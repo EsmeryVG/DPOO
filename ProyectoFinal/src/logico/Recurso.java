@@ -67,6 +67,4 @@ public class Recurso {
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
-
-
 }
