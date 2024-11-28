@@ -2,6 +2,7 @@ package logico;
 
 
 public class Evento {
+	
 	private String codEvento;
 	private String nombreEvento;
 	
@@ -17,6 +18,5 @@ public class Evento {
 	public void setNombreEvento(String nombreEvento) {
 		this.nombreEvento = nombreEvento;
 	}
-	
 
 }

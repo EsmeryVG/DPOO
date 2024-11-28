@@ -1,43 +1,72 @@
 package logico;
 
+
 public class Recurso {
 
-	private String codRecurso;
-	private String tipoRecurso;
-	private String nombreRecurso;
-	private String disponibilidadRecurso;
+	private String codigo;
+    private String tipo;
+    private String nombre;
+    private String marca;
+    private float precio;
+    private boolean disponibilidad;
 
-	public String getCodRecurso() {
-		return codRecurso;
+    public Recurso(String codigo, String tipo, String nombre, String marca, float precio, boolean disponibilidad) {
+		super();
+		this.codigo = codigo;
+		this.tipo = tipo;
+		this.nombre = nombre;
+		this.marca = marca;
+		this.precio = precio;
+		this.disponibilidad = disponibilidad;
 	}
 
-	public void setCodRecurso(String codRecurso) {
-		this.codRecurso = codRecurso;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public String getTipoRecurso() {
-		return tipoRecurso;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
-	public void setTipoRecurso(String tipoRecurso) {
-		this.tipoRecurso = tipoRecurso;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public String getNombreRecurso() {
-		return nombreRecurso;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	public void setNombreRecurso(String nombreRecurso) {
-		this.nombreRecurso = nombreRecurso;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public String getDisponibilidadRecurso() {
-		return disponibilidadRecurso;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public void setDisponibilidadRecurso(String disponibilidadRecurso) {
-		this.disponibilidadRecurso = disponibilidadRecurso;
+	public boolean getDisponibilidad() {
+		return disponibilidad;
 	}
-	
-	
+
+	public void setDisponibilidad(boolean disponibilidad) {
+		this.disponibilidad = disponibilidad;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
+
 }
