@@ -1,23 +1,27 @@
 package logico;
 
+import java.io.Serializable;
 
-public class Recurso {
+public class Recurso implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private String codigo;
     private String tipo;
     private String nombre;
     private String marca;
     private float precio;
     private boolean disponibilidad;
+    public static int codigoRecurso = 1;
 
-    public Recurso(String codigo, String tipo, String nombre, String marca, float precio, boolean disponibilidad) {
+    public Recurso(String tipo, String nombre, String marca, float precio) {
 		super();
-		this.codigo = codigo;
+		this.codigo = "RECURSO-N"+codigoRecurso;
 		this.tipo = tipo;
 		this.nombre = nombre;
 		this.marca = marca;
 		this.precio = precio;
-		this.disponibilidad = disponibilidad;
+		this.disponibilidad = true;
+		codigoRecurso++;
 	}
 
 	public String getCodigo() {
@@ -67,4 +71,15 @@ public class Recurso {
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
+
+	public static int getCodigoRecurso() {
+		return codigoRecurso;
+	}
+
+	public static void setCodigoRecurso(int codigoRecurso) {
+		Recurso.codigoRecurso = codigoRecurso;
+	}
+
+
 }
+
