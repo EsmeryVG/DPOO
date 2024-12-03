@@ -1,13 +1,19 @@
 package logico;
 
-public class Participante extends Persona {
+import java.io.Serializable;
+
+public class Participante extends Persona implements Serializable{
+
+	private static final long serialVersionUID = 1L;
     private String email;
     private String rol;
+    public static int codigoParticipante = 1;
 
-    public Participante(String codigo, String nombre, String email, String rol) {
-        super(codigo, nombre);
+    public Participante(String nombre, String email, String rol) {
+        super("PARTICIPANTE-N"+Participante.codigoParticipante, nombre);
         this.email = email;
         this.rol = rol;
+        codigoParticipante++;
     }
 
 	public String getEmail() {
@@ -24,6 +30,14 @@ public class Participante extends Persona {
 
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+
+	public static int getCodigoParticipante() {
+		return codigoParticipante;
+	}
+
+	public static void setCodigoParticipante(int codigoParticipante) {
+		Participante.codigoParticipante = codigoParticipante;
 	}
 
    
