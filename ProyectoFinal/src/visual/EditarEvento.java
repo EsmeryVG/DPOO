@@ -147,4 +147,9 @@ public class EditarEvento extends JDialog {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public static void LoadTrabajo() {
+		// TODO Auto-generated method stub
+		
+	}
 }
