@@ -37,7 +37,7 @@ public class AgregarEvento extends JDialog {
 	private JComboBox comboBox;
 	private JDateChooser fecha;
 	private JButton okButton;
-
+ 
 	/**
 	 * Launch the application.
 	 */
@@ -182,7 +182,5 @@ public class AgregarEvento extends JDialog {
 			comboBox.setSelectedItem(evento.getTipo());
 			fecha.setDate(evento.getFecha());
 		}
-	}
+  }
 }
-
-
