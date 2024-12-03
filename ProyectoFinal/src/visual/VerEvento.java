@@ -76,4 +76,9 @@ public class VerEvento extends JDialog {
 			}
 		}
 	}
+
+	public static void LoadEventos() {
+		// TODO Auto-generated method stub
+		
+	}
 }
