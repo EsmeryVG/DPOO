@@ -8,26 +8,40 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import logico.Organizadora;
+import logico.Participante;
+import logico.Recurso;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class AgregarRecurso extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtNombre;
+	private JTextField txtCodigo;
+	private JTextField txtPrecio;
+	private JComboBox comboBox1;
+	private JComboBox comboBox2;
+	private JButton okButton;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			AgregarRecurso dialog = new AgregarRecurso();
+			Recurso recurso = new Recurso("Proyector","LA BOCINA","Epson",1000);
+			AgregarRecurso dialog = new AgregarRecurso(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -38,7 +52,7 @@ public class AgregarRecurso extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AgregarRecurso() {
+	public AgregarRecurso(Recurso recurso) {
 		setTitle("Registrar Recursos");
 		setBounds(100, 100, 507, 243);
 		getContentPane().setLayout(new BorderLayout());
@@ -57,10 +71,10 @@ public class AgregarRecurso extends JDialog {
 				panel.add(lblNewLabel);
 			}
 			{
-				textField = new JTextField();
-				textField.setBounds(72, 20, 140, 19);
-				panel.add(textField);
-				textField.setColumns(10);
+				txtNombre = new JTextField();
+				txtNombre.setBounds(72, 20, 140, 19);
+				panel.add(txtNombre);
+				txtNombre.setColumns(10);
 			}
 			{
 				JLabel lblNewLabel_1 = new JLabel("Codigo:");
@@ -68,11 +82,12 @@ public class AgregarRecurso extends JDialog {
 				panel.add(lblNewLabel_1);
 			}
 			{
-				textField_1 = new JTextField();
-				textField_1.setEnabled(false);
-				textField_1.setBounds(301, 20, 140, 19);
-				panel.add(textField_1);
-				textField_1.setColumns(10);
+				txtCodigo = new JTextField();
+				txtCodigo.setEnabled(false);
+				txtCodigo.setBounds(301, 20, 140, 19);
+				panel.add(txtCodigo);
+				txtCodigo.setColumns(10);
+				txtCodigo.setText("RECURSO-N"+Recurso.codigoRecurso);
 			}
 			{
 				JLabel lblNewLabel_2 = new JLabel("Tipo:");
@@ -80,10 +95,10 @@ public class AgregarRecurso extends JDialog {
 				panel.add(lblNewLabel_2);
 			}
 			{
-				JComboBox comboBox = new JComboBox();
-				comboBox.setModel(new DefaultComboBoxModel(new String[] {"Proyector", "Micrófonos", "Altavoces", "Pantalla", "Computadora portátil", "Wi-Fi", "Sillas", "Mesas", "Escenario", "Iluminación", "Pizarra blanca", "Marcadores", "Cámara de video", "Cámara fotográfica", "Podio"}));
-				comboBox.setBounds(72, 59, 140, 21);
-				panel.add(comboBox);
+				comboBox1 = new JComboBox();
+				comboBox1.setModel(new DefaultComboBoxModel(new String[] {"Proyector", "Micrófonos", "Altavoces", "Pantalla", "Computadora portátil", "Wi-Fi", "Sillas", "Mesas", "Escenario", "Iluminación", "Pizarra blanca", "Marcadores", "Cámara de video", "Cámara fotográfica", "Podio"}));
+				comboBox1.setBounds(72, 59, 140, 21);
+				panel.add(comboBox1);
 			}
 			{
 				JLabel lblNewLabel_3 = new JLabel("Marca:");
@@ -91,10 +106,10 @@ public class AgregarRecurso extends JDialog {
 				panel.add(lblNewLabel_3);
 			}
 			{
-				JComboBox comboBox = new JComboBox();
-				comboBox.setModel(new DefaultComboBoxModel(new String[] {"Epson", "Sony", "BenQ", "ViewSonic", "Optoma", "LG", "Samsung", "Panasonic", "Sharp", "Christie"}));
-				comboBox.setBounds(301, 59, 140, 21);
-				panel.add(comboBox);
+				comboBox2 = new JComboBox();
+				comboBox2.setModel(new DefaultComboBoxModel(new String[] {"Epson", "Sony", "BenQ", "ViewSonic", "Optoma", "LG", "Samsung", "Panasonic", "Sharp", "Christie"}));
+				comboBox2.setBounds(301, 59, 140, 21);
+				panel.add(comboBox2);
 			}
 			{
 				JLabel lblNewLabel_4 = new JLabel("Precio:");
@@ -102,10 +117,20 @@ public class AgregarRecurso extends JDialog {
 				panel.add(lblNewLabel_4);
 			}
 			{
-				textField_2 = new JTextField();
-				textField_2.setColumns(10);
-				textField_2.setBounds(72, 100, 140, 19);
-				panel.add(textField_2);
+				txtPrecio = new JTextField();
+				txtPrecio.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						 char caracter = e.getKeyChar();
+			                if (((caracter < '0') || (caracter > '9'))
+			                        && (caracter != '\b')) {
+			                    e.consume();
+			                }
+					}
+				});
+				txtPrecio.setColumns(10);
+				txtPrecio.setBounds(72, 100, 140, 19);
+				panel.add(txtPrecio);
 			}
 		}
 		{
@@ -114,16 +139,79 @@ public class AgregarRecurso extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Registrar");
+				okButton = new JButton("Registrar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(validarCampos())
+						{
+							if(recurso == null)
+							{
+								Recurso recurso = new Recurso(comboBox1.getSelectedItem().toString(),txtNombre.getText()
+										,comboBox2.getSelectedItem().toString(),Float.valueOf(txtPrecio.getText()));
+								Organizadora.getInstance().insertarRecurso(recurso);
+								JOptionPane.showMessageDialog(null, "El Recurso fue agregado exitosamente!");
+								clear();
+							}else {
+								recurso.setNombre(txtNombre.getText());
+								recurso.setPrecio(Float.valueOf(txtPrecio.getText()));
+								recurso.setMarca(comboBox2.getSelectedItem().toString());
+								recurso.setTipo(comboBox1.getSelectedItem().toString());
+								JOptionPane.showMessageDialog(null, "El Recurso fue actualizado exitosamente!");
+								dispose();
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "Debe llenar todos los campos!");
+						}
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+		}
+		loadMode(recurso);
+	}
+	
+	public boolean validarCampos() {
+		 
+	    if (txtNombre.getText().isEmpty() || txtPrecio.getText().isEmpty())
+	    {
+	        return false;
+	    }
+
+	    return true;
+	}
+	
+	public void clear()
+	{
+		txtCodigo.setText("RECURSO-N"+Recurso.codigoRecurso);
+		txtNombre.setText("");
+		txtPrecio.setText("");
+		comboBox1.setSelectedIndex(0);
+		comboBox2.setSelectedIndex(0);
+	}
+	
+	public void loadMode(Recurso recurso)
+	{
+		if(recurso != null)
+		{
+			setTitle("Actualizar Recurso");
+			okButton.setText("Actualizar");
+			txtNombre.setText(recurso.getNombre());
+			txtCodigo.setText(recurso.getCodigo());
+			comboBox1.setSelectedItem(recurso.getTipo());
+			comboBox2.setSelectedItem(recurso.getMarca());
+			txtPrecio.setText(String.valueOf(recurso.getPrecio()));
 		}
 	}
 
