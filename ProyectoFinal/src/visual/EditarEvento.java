@@ -142,4 +142,9 @@ public class EditarEvento extends JDialog {
 			}
 		}
 	}
+
+	public static void LoadParticipante() {
+		// TODO Auto-generated method stub
+		
+	}
 }
